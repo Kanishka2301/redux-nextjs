@@ -1,8 +1,10 @@
 import { fetchProductDetails } from "@/actions";
+import AddToCartButton from "@/components/add-to-cart-button";
 
 async function ProductDetails({ params }) {
   const { id } = params;
   const getProductDetails = await fetchProductDetails(id);
+  console.log(getProductDetails);
 
   if (!getProductDetails || !getProductDetails.id) {
     return (
@@ -23,13 +25,27 @@ async function ProductDetails({ params }) {
               className="w-4/5 rounded object-cover"
             />
             <hr className="border-black border-2 my-6" />
+            <div className="flex flex-wrap gap-5 justify-center mx-auto">
+              {getProductDetails?.images.map((imageItem) => (
+                <img
+                  src={imageItem}
+                  alt={imageItem}
+                  className="w-24 cursor-pointer"
+                />
+              ))}
+            </div>
           </div>
-          <div className="lg:col-span-2 p-6">
-            <h2 className="text-2xl font-bold">{getProductDetails?.title}</h2>
-            <p className="text-lg mt-2">{getProductDetails?.description}</p>
-            <p className="text-lg font-extrabold mt-4">
+          <div className="lg:col-span-2">
+            <h2 className="text-3xl font-bold text-gray-900">
+              {getProductDetails?.title}
+            </h2>
+            <p className="mt-5 text-gray-800 text-xl">
               {getProductDetails?.price}
             </p>
+            <h3 className="text-lg font-bold text-gray-700">
+              {getProductDetails.description}
+            </h3>
+            <AddToCartButton />
           </div>
         </div>
       </div>
