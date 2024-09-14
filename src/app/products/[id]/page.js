@@ -45,7 +45,7 @@ async function ProductDetails({ params }) {
             <h3 className="text-lg font-bold text-gray-700">
               {getProductDetails.description}
             </h3>
-            <AddToCartButton />
+            <AddToCartButton productItem={getProductDetails} />
           </div>
         </div>
       </div>

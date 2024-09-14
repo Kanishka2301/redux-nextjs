@@ -1,4 +1,3 @@
-import AddToCartButton from "@/components/add-to-cart-button";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
@@ -9,8 +8,19 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addToCart(state, action) {},
-    removeFromCart(state, action) {},
+    addToCart(state, action) {
+      const itemExists = state.cartItems.find(
+        (item) => item.id === action.payload.id
+      );
+      if (!itemExists) {
+        state.cartItems.push(action.payload);
+      }
+    },
+    removeFromCart(state, action) {
+      state.cartItems = state.cartItems.filter(
+        (item) => item.id !== action.payload
+      );
+    },
   },
 });
 
