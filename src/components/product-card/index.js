@@ -1,11 +1,13 @@
 "use client";
 
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
+
 import { useRouter } from "next/navigation";
 
 function ProductCard({ item }) {
   const router = useRouter();
+
   return (
     <Card>
       <CardContent>
@@ -25,7 +27,7 @@ function ProductCard({ item }) {
               {item?.price}
             </p>
             <div>
-              <Button onClick={() => router.push("/${item?.id}")}>
+              <Button onClick={() => router.push(`/products/${item.id}`)}>
                 Details
               </Button>
             </div>

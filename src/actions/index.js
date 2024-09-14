@@ -2,13 +2,10 @@
 
 export async function fetchAllProducts() {
   try {
-    const result = await fetch(
-      "https://dummyjson.com/products/category/smartphones",
-      {
-        method: "GET",
-        cache: "no-store",
-      }
-    );
+    const result = await fetch(`https://dummyjson.com/products`, {
+      method: "GET",
+      cache: "no-store",
+    });
     const data = await result.json();
 
     return {
@@ -21,5 +18,28 @@ export async function fetchAllProducts() {
       success: false,
       message: "Some error occurred! Please try again.",
     };
+  }
+}
+
+export async function fetchProductDetails(currentProductID) {
+  try {
+    const result = await fetch(
+      `https://dummyjson.com/products/${currentProductID}`,
+      {
+        method: "GET",
+        cache: "no-store",
+      }
+    );
+
+    if (!result.ok) {
+      console.error("Error fetching product details:", result.status);
+      return null;
+    }
+
+    const data = await result.json();
+    return data;
+  } catch (e) {
+    console.log(e);
+    return null;
   }
 }
