@@ -1,7 +1,11 @@
 import { fetchAllProducts } from "@/actions";
 import ProductCard from "@/components/product-card";
+import { auth } from "@/auth";
 
 export default async function Home() {
+  const getSession = await auth();
+  console.log(getSession);
+
   const getAllProducts = await fetchAllProducts();
 
   return (
