@@ -2,11 +2,15 @@
 
 export async function fetchAllProducts() {
   try {
-    const result = await fetch("https://dummyjson.com/products", {
-      method: "GET",
-      cache: "no-store",
-    });
+    const result = await fetch(
+      "https://dummyjson.com/products/category/smartphones",
+      {
+        method: "GET",
+        cache: "no-store",
+      }
+    );
     const data = await result.json();
+
     return {
       success: true,
       data: data?.products,
@@ -15,7 +19,7 @@ export async function fetchAllProducts() {
     console.log(error);
     return {
       success: false,
-      message: "Some error occured! Please try again",
+      message: "Some error occurred! Please try again.",
     };
   }
 }
