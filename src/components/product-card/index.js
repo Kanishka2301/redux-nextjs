@@ -1,15 +1,11 @@
 "use client";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { Button } from "../ui/button";
+import { useRouter } from "next/navigation";
 
 function ProductCard({ item }) {
+  const router = useRouter();
   return (
     <Card>
       <CardContent>
@@ -24,12 +20,14 @@ function ProductCard({ item }) {
           <CardTitle className="text-lg font-bold text-gray-900">
             {item?.title}
           </CardTitle>
-          <div className="mt-4 justify-between flex items-centerflex-wrap gap-2">
+          <div className="mt-4 justify-between flex items-center flex-wrap gap-2">
             <p className="text-lg font-extrabold text-gray-800">
               {item?.price}
             </p>
             <div>
-              <Button>Details</Button>
+              <Button onClick={() => router.push("/${item?.id}")}>
+                Details
+              </Button>
             </div>
           </div>
         </div>
