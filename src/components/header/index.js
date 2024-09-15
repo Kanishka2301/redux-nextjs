@@ -2,10 +2,9 @@
 
 import Link from "next/link";
 import { Button } from "../ui/button";
-import { signIn } from "next-auth/react"; // Ensure you're importing from next-auth/react
+import { signIn } from "@/auth";
 
 function Header() {
-  // Function to handle OAuth sign-in
   async function handleOauthSignIn() {
     await signIn("github");
   }
@@ -32,9 +31,9 @@ function Header() {
       </ul>
 
       <div className="flex space-x-3">
-        <Button type="button" onClick={handleOauthSignIn}>
-          Login
-        </Button>
+        <form action={handleOauthSignIn}>
+          <Button type="submit">Login</Button>
+        </form>
       </div>
     </header>
   );

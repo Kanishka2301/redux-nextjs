@@ -43,11 +43,3 @@ export async function fetchProductDetails(currentProductID) {
     return null;
   }
 }
-
-export async function loginAction() {
-  await signIn("github");
-}
-
-export async function logoutAction() {
-  await signOut();
-}
