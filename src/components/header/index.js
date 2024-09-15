@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Button } from "../ui/button";
-import { signIn } from "@/auth";
+import { signIn } from "next-auth/react";
 
 function Header() {
   async function handleOauthSignIn() {
