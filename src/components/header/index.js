@@ -2,9 +2,17 @@
 
 import Link from "next/link";
 import { Button } from "../ui/button";
-import { signIn } from "next-auth/react";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 function Header() {
+  const { data: session, status } = useSession();
+
+  console.log(session, "Session data in Header");
+
+  async function handleOauthSignOut() {
+    await signOut();
+  }
+
   async function handleOauthSignIn() {
     await signIn("github");
   }
@@ -31,9 +39,11 @@ function Header() {
       </ul>
 
       <div className="flex space-x-3">
-        <form action={handleOauthSignIn}>
-          <Button type="submit">Login</Button>
-        </form>
+        {status === "authenticated" ? (
+          <Button onClick={handleOauthSignOut}>Logout</Button>
+        ) : (
+          <Button onClick={handleOauthSignIn}>Login</Button>
+        )}
       </div>
     </header>
   );
